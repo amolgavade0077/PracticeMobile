@@ -1,6 +1,7 @@
 package screens;
 
 import com.google.common.collect.ImmutableMap;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.touch.LongPressOptions;
@@ -36,8 +37,28 @@ public class Utilitys {
                 "duration",duration));
     }
 
+    public void scrollDown(String text) {
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
+
+    }
 
 
 
+    public void SwipeGesture(WebElement ele, String direction) {
+        ((JavascriptExecutor) driver).executeScript("mobile:swipeGesture", ImmutableMap.of("element",
+                ((RemoteWebElement) ele).getId(),
+                "direction", direction,
+                "percent", 0.20));
+    }
+
+    public void DragAndDrop(WebElement ele,int xCordi,int ycordi)
+    {
+        ((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) ele).getId(),
+                "endX", xCordi,
+                "endY", ycordi));
+    }
 
 }
