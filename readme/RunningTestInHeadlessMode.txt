@@ -1,0 +1,24 @@
+Below commands can be used to execute test scripts from command prompt (headless execution) successfully:
+
+1. Headless execution using direct command
+   mvn clean
+   mvn compile
+   mvn test -DplatformName="platform" (Here platform = android or ios)(mvn test automatically executes the clean & compile commands)
+   
+   Example: mvn test -DplatformName=ios
+
+
+2. Headless execution by passing the xml file path and platform
+   Format: mvn test -DxmlFilePath="Path of TestNG xml file" -DplatformName="platform" (Here platform = android or ios)
+
+   Example: mvn test -DxmlFilePath=src/test/resources/cucumber_testng.xml -DplatformName="android" -DenvName=staging
+
+
+3.  Headless execution by passing the feature file path and platform
+    Command like the one mentioned below can also be used to execute from command prompt.
+    Format: mvn test -DxmlFilePath="Path of TestNG feature file" -DplatformName="platform" (Here platform = android or ios)
+
+    Example: mvn test -Dcucumber.options="src/test/resources/features/FuelFinder/SearchFuelStation.feature" -DplatformName="android" -DenvName=staging
+
+    All the tests in the feature file / files will get executed for the selected platform (iOS or Android)
+
